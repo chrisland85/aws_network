@@ -1,14 +1,20 @@
-# Default tags
-variable "default_tags" {
-  default = {}
-  type        = map(any)
-  description = "Default tags to be appliad to all AWS resources"
+
+
+variable "private_subnets_cidr" {
+  type        = list(string)
+  default     = ["10.100.3.0/24", "10.100.4.0/24"]
+  description = "Private Subnet CIDRs"
 }
 
-# Name prefix
-variable "prefix" {
-  type        = string
-  description = "Name prefix"
+variable "region" {
+  default    =  "us-east-1"
+  description = "Region in which the bastion host will be launched"
+}
+
+variable "availability_zones" {
+  type        = list
+  default     = ["us-east-1b", "us-east-1c"]
+  description = "AZ in which all the resources will be deployed"
 }
 
 # VPC CIDR range
@@ -24,4 +30,3 @@ variable "env" {
   type        = string
   description = "Deployment Environment"
 }
-
