@@ -15,7 +15,6 @@ resource "aws_vpc" "vpc" {
   }
 }
 
-# Subnets
 # Internet Gateway for Public Subnet
 resource "aws_internet_gateway" "ig" {
   vpc_id = aws_vpc.vpc.id
