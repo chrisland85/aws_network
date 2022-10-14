@@ -15,32 +15,6 @@ resource "aws_vpc" "vpc" {
   }
 }
 
-# Internet Gateway for Public Subnet
-resource "aws_internet_gateway" "ig" {
-  vpc_id = aws_vpc.vpc.id
-  tags = {
-    Name        = "${var.env}-igw"
-    Env = var.env
-  }
-}
-
-# Elastic-IP (eip) for NAT
-resource "aws_eip" "nat_eip" {
-  vpc        = true
-  depends_on = [aws_internet_gateway.ig]
-}
-
-# NAT
-resource "aws_nat_gateway" "nat" {
-  allocation_id = aws_eip.nat_eip.id
-  subnet_id     = element(aws_subnet.public_subnet.*.id, 0)
-
-  tags = {
-    Name        = "nat"
-    Env = "${var.env}"
-  }
-}
-
 # Private Subnet
 resource "aws_subnet" "private_subnet" {
   vpc_id                  = aws_vpc.vpc.id
