@@ -13,7 +13,7 @@ variable "prefix" {
 
 # VPC CIDR range
 variable "vpc_cidr" {
-  default     = "10.20.0.0/16"
+  default     = "10.100.0.0/16"
   type        = string
   description = "VPC to host static web site"
 }
